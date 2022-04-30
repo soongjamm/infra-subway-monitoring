@@ -1,0 +1,38 @@
+k6 run --out influxdb=http://localhost:8086/myk6db load.js
+
+          /\      |‾‾| /‾‾/   /‾‾/
+     /\  /  \     |  |/  /   /  /
+    /  \/    \    |     (   /   ‾‾\
+   /          \   |  |\  \ |  (‾)  |
+  / __________ \  |__| \__\ \_____/ .io
+
+  execution: local
+     script: load.js
+     output: InfluxDBv1 (http://localhost:8086)
+
+  scenarios: (100.00%) 1 scenario, 46 max VUs, 2m40s max duration (incl. graceful stop):
+           * default: Up to 46 looping VUs for 2m10s over 7 stages (gracefulRampDown: 30s, gracefulStop: 30s)
+
+
+running (2m10.5s), 00/46 VUs, 4267 complete and 0 interrupted iterations
+default ↓ [======================================] 01/46 VUs  2m10s
+
+     ✓ status is 200
+
+     checks.........................: 100.00% ✓ 4267      ✗ 0
+     data_received..................: 7.0 MB  54 kB/s
+     data_sent......................: 534 kB  4.1 kB/s
+     http_req_blocked...............: avg=66.29µs min=1.45µs  med=4.57µs  max=15.3ms  p(90)=5.98µs  p(95)=7.84µs
+     http_req_connecting............: avg=12.28µs min=0s      med=0s      max=2.76ms  p(90)=0s      p(95)=0s
+   ✓ http_req_duration..............: avg=2.74ms  min=2ms     med=2.63ms  max=16.44ms p(90)=2.99ms  p(95)=3.19ms
+       { expected_response:true }...: avg=2.74ms  min=2ms     med=2.63ms  max=16.44ms p(90)=2.99ms  p(95)=3.19ms
+     http_req_failed................: 0.00%   ✓ 0         ✗ 4267
+     http_req_receiving.............: avg=62.51µs min=13.32µs med=53.98µs max=9.57ms  p(90)=78.61µs p(95)=94.13µs
+     http_req_sending...............: avg=22.9µs  min=5.52µs  med=18.1µs  max=2.96ms  p(90)=30.4µs  p(95)=42.33µs
+     http_req_tls_handshaking.......: avg=47.86µs min=0s      med=0s      max=13.47ms p(90)=0s      p(95)=0s
+     http_req_waiting...............: avg=2.65ms  min=1.94ms  med=2.55ms  max=16.4ms  p(90)=2.92ms  p(95)=3.11ms
+     http_reqs......................: 4267    32.696195/s
+     iteration_duration.............: avg=1s      min=1s      med=1s      max=1.01s   p(90)=1s      p(95)=1s
+     iterations.....................: 4267    32.696195/s
+     vus............................: 1       min=1       max=46
+     vus_max........................: 46      min=46      max=46
